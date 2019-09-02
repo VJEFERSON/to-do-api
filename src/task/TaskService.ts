@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators';
 import _ = require('lodash');
 import { TaskDto } from './dtos/TaskDto';
 import { CreateTaskDto } from './dtos/CreateTaskDto';
+import { promises } from 'fs';
 
 @Injectable()
 export class TaskService {
@@ -18,6 +19,10 @@ export class TaskService {
         return from(this.taskRepository.find())
         .pipe(
             map((tasks) => _.orderBy(tasks, ['id'], ['desc'])));
+    }
+
+    public findById(taskId: number): Promise<TaskEntity> {
+        return this.taskRepository.findOne(taskId);
     }
 
     public create(createTaksDto: CreateTaskDto): Promise<TaskDto> {

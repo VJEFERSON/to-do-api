@@ -4,9 +4,10 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { map } from 'rxjs/operators';
 import _ = require('lodash');
-import { CreateTagDto } from './dtos/CreatetagDto';
+import { CreateTagDto } from './dtos/CreateTagDto';
 import { TagDto } from './dtos/TagDto';
 import { TagEntity } from 'src/entities/TagEntity';
+import { EditTagDto } from './dtos/EditTagDto';
 
 @Injectable()
 export class TagService {
@@ -22,6 +23,14 @@ export class TagService {
 
     public create(createUserDto: CreateTagDto): Promise<TagDto> {
         return this.tagRepository.save(createUserDto);
+    }
+
+    public edit(editTagDto: EditTagDto): Promise<TagDto> {
+        return this.tagRepository.save(editTagDto);
+    }
+
+    public delete(tagId: number): void {
+        this.tagRepository.delete(tagId);
     }
 
 }

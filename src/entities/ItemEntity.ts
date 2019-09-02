@@ -7,7 +7,7 @@ export class ItemEntity {
     id: number;
     @Column({length: 500})
     description: string;
-    @Column('bool')
+    @Column({ default: false })
     completed: boolean;
 
     @ManyToOne(type => TaskEntity, task => task.items)

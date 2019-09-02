@@ -10,7 +10,7 @@ export class TaskEntity {
     title: string;
     @Column({length: 600})
     description: string;
-    @Column('bool')
+    @Column({ default: false })
     completed: boolean;
 
     @OneToMany(type => ItemEntity, item => item.task)
