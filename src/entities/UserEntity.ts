@@ -10,4 +10,9 @@ export class UserEntity {
     email: string;
     @Column({length: 255})
     password: string;
+
+    toResponseObject() {
+        const {id, name, email} = this;
+        return {id, name, email};
+    }
 }
